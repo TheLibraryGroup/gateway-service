@@ -5,7 +5,9 @@ spring:
     cloud:
         config:
             uri: http://localhost:8888
-#        gateway:
+        gateway:
+            default-filters:
+                - TokenRelay
 #            routes:
 #                -   id: catalog-books
 #                    #              uri: http://localhost:8090
@@ -14,15 +16,19 @@ spring:
 #                        - Path=/api/books/**
         discovery:
             enabled: true
+    security:
+        oauth2:
+            client:
+                provider:
+                    keycloak:
+                        issuer-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary
+                        user-name-attribute: preferred_username
+                registration:
+                    keycloak:
+                        client-id: thelibrary-app
+                        client-secret: 6c6133bb-dd29-4ac9-8a0a-267dee5ca295
 
-keycloak:
-    auth-server-url: https://auth.thelibrary.mypoc.online/auth
-    ssl-required: all
-    bearer-only: true
-    cors: true
-    public-client: true
-    realm: TheLibrary
-    resource: thelibrary-app
+
 
 eureka:
     client:
