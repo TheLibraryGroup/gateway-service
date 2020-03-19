@@ -15,6 +15,15 @@ spring:
         discovery:
             enabled: true
 
+keycloak:
+    auth-server-url: https://auth.thelibrary.mypoc.online/auth
+    ssl-required: all
+    bearer-only: true
+    cors: true
+    public-client: true
+    realm: TheLibrary
+    resource: thelibrary-app
+
 eureka:
     client:
         serviceUrl:
