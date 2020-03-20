@@ -5,9 +5,9 @@ spring:
     cloud:
         config:
             uri: http://localhost:8888
-        gateway:
-            default-filters:
-                - TokenRelay
+#        gateway:
+#            default-filters:
+#                - TokenRelay
 #            routes:
 #                -   id: catalog-books
 #                    #              uri: http://localhost:8090
@@ -18,15 +18,18 @@ spring:
             enabled: true
     security:
         oauth2:
-            client:
-                provider:
-                    keycloak:
-                        issuer-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary
-                        user-name-attribute: preferred_username
-                registration:
-                    keycloak:
-                        client-id: thelibrary-app
-                        client-secret: 6c6133bb-dd29-4ac9-8a0a-267dee5ca295
+            resourceserver:
+                jwt:
+                    jwk-set-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary/.well-known/openid-configuration
+#            client:
+#                provider:
+#                    keycloak:
+#                        issuer-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary
+#                        user-name-attribute: admin
+#                registration:
+#                    keycloak:
+#                        client-id: thelibrary-app
+#                        client-secret: 6c6133bb-dd29-4ac9-8a0a-267dee5ca295
 
 
 
