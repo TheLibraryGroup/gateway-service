@@ -24,6 +24,13 @@ spring:
                         allowedMethods:
                             - GET
                 add-to-simple-url-handler-mapping: true
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary
+    main:
+        allow-bean-definition-overriding: true
 #    security:
 #        oauth2:
 #            resourceserver:
