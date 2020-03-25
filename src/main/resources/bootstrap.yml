@@ -5,18 +5,11 @@ spring:
     cloud:
         config:
             uri: http://localhost:8888
-#        gateway:
-#            routes:
-#                -   id: catalog-books
-#                    #              uri: http://localhost:8090
-#                    uri: lb://thelibrary-microservice-catalog
-#                    predicates:
-#                        - Path=/api/books/**
         discovery:
             enabled: true
         gateway:
-            default-filters:
-                - TokenRelay
+#            default-filters:
+#                - TokenRelay
             routes:
                 -   id: THELIBRARY-MS-BOOK
                     uri: lb://thelibrary-ms-book
@@ -24,16 +17,16 @@ spring:
                         - Path=/api/**
                     filters:
                         - TokenRelay=
-            globalcors:
-                corsConfigurations:
-                    '[/**]':
-                        allowedOrigins: "*"
-                        allowedMethods:
-                            - GET
-                            - POST
-                            - DELETE
-                            - PUT
-                        add-to-simple-url-handler-mapping: true
+#            globalcors:
+#                corsConfigurations:
+#                    '[/**]':
+#                        allowedOrigins: "http://localhost:4200/"
+#                        allowedMethods:
+#                            - GET
+#                            - POST
+#                            - DELETE
+#                            - PUT
+#                        add-to-simple-url-handler-mapping: true
     security:
         oauth2:
             client:
@@ -46,7 +39,6 @@ spring:
                     keycloak:
                         client-id: thelibrary-app
                         client-secret: 5902eff4-0127-440d-92d5-f0c0682ff4d7
-#                        client-secret: db051fad-0975-4bfa-a183-7da4404e8453
 
 eureka:
     client:
