@@ -17,17 +17,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.header.XFrameOptionsServerHttpHeadersWriter;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.server.ServerWebExchange;
 
 import java.io.ObjectInputStream;
+import java.util.List;
 
 @SpringBootApplication
+@RestController
 public class GatewayApplication {
+
 
 //	@Autowired
 //	private TokenRelayGatewayFilterFactory filterFactory;
@@ -55,18 +63,4 @@ public class GatewayApplication {
 		SpringApplication.run( GatewayApplication.class, args );
 	}
 
-	@Bean
-	public SecurityWebFilterChain springSecurityFilterChain( ServerHttpSecurity http,
-	                                                         ReactiveClientRegistrationRepository clientRegistrationRepository) {
-
-		// Require authentication for all requests
-		http.cors().and().authorizeExchange().anyExchange().permitAll();
-
-		// Allow showing /home within a frame
-//		http.headers().frameOptions().mode( XFrameOptionsServerHttpHeadersWriter.Mode.SAMEORIGIN);
-
-		// Disable CSRF in the gateway to prevent conflicts with proxied service CSRF
-		http.csrf().disable();
-		return http.build();
-	}
 }

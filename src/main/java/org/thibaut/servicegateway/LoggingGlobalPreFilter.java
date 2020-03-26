@@ -21,7 +21,6 @@ public class LoggingGlobalPreFilter implements GlobalFilter {
 			GatewayFilterChain chain ) {
 		log.info( "Global Pre Filter executed" );
 		final List< String > jwtToken = exchange.getRequest( ).getHeaders( ).getValuesAsList( "Authorization" );
-
 		log.info( "TOKEN: " + jwtToken.toString( ) );
 		return chain.filter( exchange );
 	}

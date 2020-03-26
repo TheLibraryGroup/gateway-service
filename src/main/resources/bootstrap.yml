@@ -8,8 +8,8 @@ spring:
         discovery:
             enabled: true
         gateway:
-#            default-filters:
-#                - TokenRelay
+            default-filters:
+                - TokenRelay
             routes:
                 -   id: THELIBRARY-MS-BOOK
                     uri: lb://thelibrary-ms-book
@@ -43,7 +43,7 @@ spring:
 eureka:
     client:
         serviceUrl:
-            defaultZone: http://localhost:8761/eureka/
+            defaultZone: http://theusername:password@localhost:8761/eureka/
 
 management:
     endpoints:
