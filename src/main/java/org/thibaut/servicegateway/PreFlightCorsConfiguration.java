@@ -11,20 +11,20 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 @Configuration
 public class PreFlightCorsConfiguration {
 
-    @Bean
-    public CorsWebFilter corsFilter() {
-        return new CorsWebFilter(corsConfigurationSource());
-    }
+	@Bean
+	public CorsWebFilter corsFilter( ) {
+		return new CorsWebFilter( corsConfigurationSource( ) );
+	}
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-        config.addAllowedMethod( HttpMethod.GET);
-        config.addAllowedMethod( HttpMethod.PUT);
-        config.addAllowedMethod( HttpMethod.POST);
-        config.addAllowedMethod(HttpMethod.DELETE);
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+	@Bean
+	CorsConfigurationSource corsConfigurationSource( ) {
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource( );
+		CorsConfiguration config = new CorsConfiguration( ).applyPermitDefaultValues( );
+		config.addAllowedMethod( HttpMethod.GET );
+		config.addAllowedMethod( HttpMethod.PUT );
+		config.addAllowedMethod( HttpMethod.POST );
+		config.addAllowedMethod( HttpMethod.DELETE );
+		source.registerCorsConfiguration( "/**", config );
+		return source;
+	}
 }

@@ -1,22 +1,28 @@
 
+server:
+    port: ${SERVER-PORT}
+
 spring:
     application:
         name: gateway-service
     cloud:
         config:
-            uri: http://localhost:8888
+            uri: ${SPRING-CLOUD-CONFIG-URI}
+            username: ${SPRING-CLOUD-CONFIG-USERNAME}
+            password: ${SPRING-CLOUD-CONFIG-PWD}
         discovery:
             enabled: true
         gateway:
             default-filters:
                 - TokenRelay
-            routes:
-                -   id: THELIBRARY-MS-BOOK
-                    uri: lb://thelibrary-ms-book
-                    predicates:
-                        - Path=/api/**
-                    filters:
-                        - TokenRelay=
+#            routes:
+#                -   id: THELIBRARY-MS-BOOK
+#                    uri: lb://thelibrary-ms-book
+#                    predicates:
+#                        - Path=/api/**
+#                    filters:
+#                        - TokenRelay=
+#                        - RemoveRequestHeader=Cookie
 #            globalcors:
 #                corsConfigurations:
 #                    '[/**]':
@@ -32,8 +38,7 @@ spring:
             client:
                 provider:
                     keycloak:
-#                        issuer-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary
-                        issuer-uri: http://localhost:8080/auth/realms/TheLibrary
+                        issuer-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary
                         user-name-attribute: preferred_username
                 registration:
                     keycloak:
@@ -43,16 +48,13 @@ spring:
 eureka:
     client:
         serviceUrl:
-            defaultZone: http://theusername:password@localhost:8761/eureka/
+            defaultZone: ${EUREKA-CLIENT-SERVICEURL-DEFAULTZONE}
 
 management:
     endpoints:
         web:
             exposure:
                 include: "*"
-
-server:
-    port: 8081
 
 logging:
     level:
