@@ -20,6 +20,7 @@
 		<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 		<spring-boot-starter-oauth2-client.version>2.2.5.RELEASE</spring-boot-starter-oauth2-client.version>
 		<spring-cloud-security.version>2.2.1.RELEASE</spring-cloud-security.version>
+		<maven-compiler-plugin.source-target.version>1.8</maven-compiler-plugin.source-target.version>
 	</properties>
 
 	<dependencies>
@@ -90,12 +91,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>${start-class}</mainClass>
-					<outputDirectory>../docker/back</outputDirectory>
+					<outputDirectory>build</outputDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<!--				<version>3.2.0</version>-->
+				<version>3.2.0</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -116,6 +117,15 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${maven-compiler-plugin.source-target.version}</source>
+					<target>${maven-compiler-plugin.source-target.version}</target>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
