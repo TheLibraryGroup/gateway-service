@@ -21,7 +21,7 @@ spring:
 #                    predicates:
 #                        - Path=/api/**
 #                    filters:
-#                        - TokenRelay=
+##                        - TokenRelay=
 #                        - RemoveRequestHeader=Cookie
 #            globalcors:
 #                corsConfigurations:
@@ -46,15 +46,37 @@ spring:
                         client-secret: 5902eff4-0127-440d-92d5-f0c0682ff4d7
 
 eureka:
+    instance:
+        leaseRenewalIntervalInSeconds: 10
+        health-check-url-path: /actuator/health
+        metadata-map:
+            startup: ${random.int}    #needed to trigger info and endpoint update after restart
     client:
+        registryFetchIntervalSeconds: 5
         serviceUrl:
             defaultZone: ${EUREKA-CLIENT-SERVICEURL-DEFAULTZONE}
 
 management:
+    endpoint:
+        health:
+            show-details: always
     endpoints:
         web:
             exposure:
                 include: "*"
+
+hystrix:
+    metrics:
+        polling-interval-ms: 3000
+        enabled: true
+    command:
+        fallbackcmd:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 5000
+
+
 
 logging:
     level:
@@ -63,3 +85,4 @@ logging:
                 cloud.gateway: DEBUG
                 http.server.reactive: DEBUG
                 web.reactive: DEBUG
+
