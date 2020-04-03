@@ -98,7 +98,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>${start-class}</mainClass>
-					<outputDirectory>build</outputDirectory>
+					<outputDirectory>./</outputDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
