@@ -9,18 +9,6 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 public class SecurityConfig {
 
-//	@Bean
-//	SecurityWebFilterChain springSecurityFilterChain( ServerHttpSecurity http ) throws Exception {
-//		http
-//				.authorizeExchange( )
-//				.pathMatchers( "/resource" ).hasRole( "admin" )
-//				.anyExchange( ).authenticated( )
-//				.and( )
-//				.oauth2ResourceServer( )
-//				.jwt( );
-//		return http.build( );
-//	}
-
 	@Bean
 	public SecurityWebFilterChain springSecurityFilterChain(
 			ServerHttpSecurity http,
