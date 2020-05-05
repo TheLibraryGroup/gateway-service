@@ -39,11 +39,14 @@ spring:
                 provider:
                     keycloak:
                         issuer-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary
+#                        issuer-uri: https://localhost:8080/auth/realms/TheLibrary
                         user-name-attribute: preferred_username
                 registration:
                     keycloak:
                         client-id: thelibrary-app
                         client-secret: 5902eff4-0127-440d-92d5-f0c0682ff4d7
+    resources:
+        add-mappings: true
 
 eureka:
     instance:
@@ -52,7 +55,7 @@ eureka:
         metadata-map:
             startup: ${random.int}    #needed to trigger info and endpoint update after restart
     client:
-        registryFetchIntervalSeconds: 5
+#        registryFetchIntervalSeconds: 5
         serviceUrl:
             defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
 

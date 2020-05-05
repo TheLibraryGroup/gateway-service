@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 @EnableEurekaClient
 public class GatewayApplication {
 
-
 //	@Autowired
 //	private TokenRelayGatewayFilterFactory filterFactory;
 //
