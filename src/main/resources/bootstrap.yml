@@ -16,7 +16,7 @@ spring:
             default-filters:
                 - TokenRelay
 #            routes:
-#                -   id: THELIBRARY-MS-BOOK
+#                -   id: DISCOVERY
 #                    uri: lb://thelibrary-ms-book
 #                    predicates:
 #                        - Path=/api/**
@@ -38,7 +38,7 @@ spring:
             client:
                 provider:
                     keycloak:
-                        issuer-uri: https://www.auth.thelibrary.mypoc.online/auth/realms/TheLibrary
+                        issuer-uri: https://www.auth.mypoc.online/auth/realms/TheLibrary
 #                        issuer-uri: https://localhost:8080/auth/realms/TheLibrary
                         user-name-attribute: preferred_username
                 registration:
